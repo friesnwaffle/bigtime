@@ -11,6 +11,9 @@ importers:
       luxon:
         specifier: ^3.4.4
         version: 3.4.4
+      node-location-timezone:
+        specifier: ^1.1.0
+        version: 1.1.0
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
@@ -711,6 +714,10 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  node-location-timezone@1.1.0:
+    resolution: {integrity: sha512-OQtao6c5Am5w4lR6wC+KMhnS1Sttem0TxdmWCZkq596s68DKT+jRY856bsXVIMf8qLgBtsL2qhPjX+C9DCN2Kg==}
+    engines: {node: '>=14.5.0', npm: '>=6.14.5'}
+
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
 
@@ -1053,6 +1060,9 @@ packages:
     resolution: {integrity: sha512-2wWLbGbYDiSqqIKoPjar3MPgB94ErzCtrNE1FdqGuaO0pi2JGjmE8aW8TDZwzU7vuxcGRdL/4gPQwQ7hD5AMSw==}
     engines: {node: '>= 14'}
     hasBin: true
+
+  zipson@0.2.12:
+    resolution: {integrity: sha512-+u+fyZQXJUJDTf4NGCChW+LoWGqCrhwHAfvtCtcmE0e40KmQt4YSP4l3TOay1WjRNv+VfODgBD/vNwaSSGnDwA==}
 
 snapshots:
 
@@ -1613,6 +1623,10 @@ snapshots:
 
   nanoid@3.3.7: {}
 
+  node-location-timezone@1.1.0:
+    dependencies:
+      zipson: 0.2.12
+
   node-releases@2.0.18: {}
 
   normalize-path@3.0.0: {}
@@ -1954,3 +1968,5 @@ snapshots:
   wrappy@1.0.2: {}
 
   yaml@2.5.0: {}
+
+  zipson@0.2.12: {}
