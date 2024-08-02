@@ -2,7 +2,7 @@
     import "../app.css";
     import { page } from '$app/stores';
     import { DateTime } from 'luxon'
-    import Search from "$lib/Search.svelte";
+    import Header from "$lib/Header.svelte";
     
     const geoip = $page.data
     const { timezone, city, country } = geoip
@@ -25,14 +25,14 @@
 
 <main class="w-screen h-screen bg-lbg text-lpm dark:bg-dbg dark:text-dpm font-primary">
 
-<Search />
+<Header />
     
 {#if timezone}
 
 <div class="h-[90vh] grid place-content-center text-center">
     <div class="mb-8 md:mb-2">Time in <span class="font-bold ">{city ? `${city}, ` : ''} {country}</span> now:</div>
     <button on:click={() => is12H = !is12H}>
-        <div class="font-clock text-[13vw] xl:text-[10vw]">
+        <div class="font-clock text-[13vw] md:text-[12vw] 2xl:text-[13rem]">
             {#if is12H}
                 {now.toFormat('h:mm:ss')}<span class="font-clock text-[3vw]">{now.toFormat('a')}</span>
             {:else}

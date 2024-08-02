@@ -7,7 +7,8 @@ interface Result {
     slug: string;
 }
 
-function search(query:string) {
+function search(q:string) {
+    const query = q.toLowerCase()
     const iso = locationTimezone.findCountryByIso(query)
 
     const countries = locationTimezone.getCountries()
