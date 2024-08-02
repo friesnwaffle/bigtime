@@ -4,6 +4,7 @@
 
 <script lang="ts">
     import { Duration } from "luxon";
+    import PageStructure from "$lib/PageStructure.svelte";
 
     let running:boolean = false
     let started:boolean = false
@@ -32,13 +33,13 @@
     function startPause() {
         if (timer.as('seconds') > 0) {
             started = true                                  // FIRST CLICK STARTS THE TIMER
-            message.innerHTML = 'Timer Started'
+            message.innerHTML = 'Timer running...'
             if (!running && timer.as('seconds') > 0) {      // 
                 running = true
                 intervalId = setInterval(() => {            // TICKER
                     if (timer.as('seconds') === 0) {
                         reset()                             // RESET WHEN TIMER === 0
-                        message.innerHTML = 'Timer Ended'
+                        message.innerHTML = 'Timer ended'
                     }
                     else {
                         timer = timer.minus(1000)
@@ -49,7 +50,7 @@
             else {                                          // SUBSEQUENT CLICKS PAUSES THE TIMER
                 running = false
                 clearInterval(intervalId)
-                message.innerHTML = 'Timer Paused'
+                message.innerHTML = 'Timer paused...'
             }
         }
     }
@@ -60,13 +61,15 @@
         running = false
         clearInterval(intervalId)
         timer = Duration.fromMillis(0)
-        message.innerHTML = 'Scroll Up/Down to set Timer'
+        message.innerHTML = 'Scroll up/down to set timer'
     }
-    </script>
+</script>
 
-<div class="h-[90vh] grid place-content-center text-center">
-    <div bind:this={message}>Scroll Up/Down to set Timer</div>
-    <div class="font-clock text-[13vw] xl:text-[10vw] flex">
+<PageStructure>
+
+    <div slot="upper" bind:this={message}>Scroll up/down to set timer</div>
+
+    <div slot="clock" class="flex justify-center">
         <div class="{started || running ? 'cursor-not-allowed' : 'cursor-ns-resize'}" on:wheel={(e) => scroll(e, 'hours')}>{timer.toFormat('hh:mm:ss').split(':')[0]}</div>
         :
         <div class="{started || running ? 'cursor-not-allowed' : 'cursor-ns-resize'}" on:wheel={(e) => scroll(e, 'minutes')}>{timer.toFormat('hh:mm:ss').split(':')[1]}</div>
@@ -74,7 +77,7 @@
         <div class="{started || running ? 'cursor-not-allowed' : 'cursor-ns-resize'}" on:wheel={(e) => scroll(e, 'seconds')}>{timer.toFormat('hh:mm:ss').split(':')[2]}</div>
     </div>
 
-    <div class="absolute left-1/2 -translate-x-1/2 top-2/3 text-4xl flex justify-center align-center gap-10">
+    <div slot="lower" class="flex justify-center align-center gap-10">
         <button on:click={reset}>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3s-3 1.331-3 3s1.329 3 3 3" />
@@ -98,4 +101,4 @@
             </svg>
         </button>
     </div>
-</div>
+</PageStructure>

@@ -6,8 +6,7 @@
     import { DateTime, Duration } from "luxon"
     import { onMount, onDestroy } from "svelte"
     import { writable } from "svelte/store";
-    import { page } from "$app/stores";
-    console.log($page)
+    import PageStructure from "$lib/PageStructure.svelte";
 
     let startTime: DateTime
     let timeLapsed: Duration = Duration.fromMillis(0)
@@ -24,11 +23,11 @@
                 timeLapsed = DateTime.now().diff(startTime)
             }, 10)
             running = true
-            message.innerHTML = 'Running...'
+            message.innerHTML = 'Stopwatch running...'
         } else {
             clearInterval(interval)
             running = false
-            message.innerHTML = 'Paused'
+            message.innerHTML = 'Stopwatch paused...'
         }
     }
 
@@ -62,28 +61,17 @@
 
 
 
-<div class="h-[90vh] grid place-content-center text-center">
 
-    <div bind:this={message}>Hit Play Button to Start Stopwatch</div>
+<PageStructure>
+    <div slot="upper" bind:this={message}>Hit Play Button to Start Stopwatch</div>
 
-    <div class="font-RubikMono text-[13vw] xl:text-[10vw]">
+    <div slot="clock">
         {timeLapsed.hours > 0 ? timeLapsed.get('hour') : ''}<!--
-        --><span class="font-RubikMono">{timeLapsed.toFormat('mm:ss')}</span><!--
-        --><span class="font-RubikMono text-[5vw] ml-3">{timeLapsed.toFormat('ss SSS').split(' ')[1]}</span>
+        --><span>{timeLapsed.toFormat('mm:ss')}</span><!--
+        --><span class="text-[5vw] ml-3">{timeLapsed.toFormat('ss SSS').split(' ')[1]}</span>
     </div>
-
-    {#if $stamps.length > 0}
-    <div class="absolute top-4 right-4 text-sm">
-        <p class=" mb-2">Timestamps</p>
-        <ol class="max-h-40 overflow-y-scroll no-scrollbar italic" bind:this={ol}>
-            {#each $stamps as stamp, i}
-                <li class="list-none font-mono">#{(i+1).toLocaleString('en-US', {minimumIntegerDigits: 2})}&nbsp;&nbsp;&nbsp;&nbsp;{stamp}</li>
-            {/each}
-        </ol>
-    </div>
-    {/if}
     
-    <div class="absolute left-1/2 -translate-x-1/2 top-2/3 text-4xl flex justify-center align-center gap-10">
+    <div slot="lower" class="flex justify-center align-center gap-10">
         <button on:click={reset} class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -109,4 +97,15 @@
             </svg>
         </button>
     </div>
-</div>
+</PageStructure>
+
+{#if $stamps.length > 0}
+    <div class="absolute top-4 right-4 text-sm dark:text-dpm">
+        <p class="mb-2 text-center">Timestamps</p>
+        <ol class="max-h-40 overflow-y-scroll no-scrollbar italic" bind:this={ol}>
+            {#each $stamps as stamp, i}
+                <li class="list-none font-mono">#{(i+1).toLocaleString('en-US', {minimumIntegerDigits: 2})}&nbsp;&nbsp;&nbsp;&nbsp;{stamp}</li>
+            {/each}
+        </ol>
+    </div>
+{/if}

@@ -4,6 +4,7 @@
 
 <script lang="ts">
     import { Duration } from "luxon";
+    import PageStructure from "$lib/PageStructure.svelte";
 
     let workSession = Duration.fromObject({minutes: 25})
     let breakSession = Duration.fromObject({minutes: 5})
@@ -52,11 +53,12 @@
     }
 </script>
 
-<div class="h-[90vh] grid place-content-center text-center">
-    <div bind:this={message}>Hit Play Button to Start Focus Session</div>
-    <div class="font-RubikMono text-[13vw] xl:text-[10vw]">{currentSession.toFormat('hh:mm:ss')}</div>
+<PageStructure>
 
-    <div class="absolute left-1/2 -translate-x-1/2 top-2/3 text-4xl flex justify-center align-center gap-10">
+    <div slot="upper" bind:this={message}>Hit Play Button to Start Focus Session</div>
+    <div slot="clock">{currentSession.toFormat('hh:mm:ss')}</div>
+
+    <div slot="lower" class="flex justify-center align-center gap-10">
         <button on:click={reset}>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3s-3 1.331-3 3s1.329 3 3 3" />
@@ -79,4 +81,4 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"></svg>
         </button>
     </div>
-</div>
+</PageStructure>

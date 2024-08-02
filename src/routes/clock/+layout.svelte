@@ -1,11 +1,12 @@
 <script lang="ts">
     import { page } from '$app/stores';
     import { DateTime } from 'luxon'
+    import PageStructure from '$lib/PageStructure.svelte';
     
     const geoip = $page.data
     const { timezone, city, country } = geoip
     
-    let is12H:boolean = true
+    let is12H:boolean = false
     let now:any
     if (timezone) {
         now = DateTime.now().setZone(timezone)
@@ -21,14 +22,12 @@
     </title>
 </svelte:head>
 
-
-    
 {#if timezone}
 
-<div class="h-[90vh] grid place-content-center text-center">
-    <div class="mb-8 md:mb-2">Time in <span class="font-bold ">{city ? `${city}, ` : ''} {country}</span> now:</div>
-    <button on:click={() => is12H = !is12H}>
-        <div class="font-clock text-[13vw] md:text-[12vw] 2xl:text-[13rem]">
+<PageStructure>    
+    <div slot="upper">Time in <span class="font-bold">{city ? `${city}, ` : ''} {country}</span> now:</div>
+    <button slot="clock" on:click={() => is12H = !is12H}>
+        <div >
             {#if is12H}
                 {now.toFormat('h:mm:ss')}<span class="font-clock text-[3vw]">{now.toFormat('a')}</span>
             {:else}
@@ -36,8 +35,8 @@
             {/if}
         </div>
     </button>
-    <div class="mt-8 md:mt-2 text-2xl md:text-3xl">{now.toLocaleString(DateTime.DATE_HUGE)}</div>
-</div>
+    <div slot="lower">{now.toLocaleString(DateTime.DATE_HUGE)}</div>
+</PageStructure>
 
 {:else}
 
@@ -48,4 +47,3 @@
     </div>
 
 {/if}
-
