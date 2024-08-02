@@ -1,6 +1,7 @@
 <script lang="ts">
     import search from "$lib/search";
     import { clickOutside } from "$lib/clickOutside";
+    import { page } from "$app/stores";
 
     let query:string
     let inputElement:HTMLInputElement
@@ -35,6 +36,8 @@
         <a href="/" class="uppercase tracking-widest font-bold px-5 py-3 bg-lsc dark:text-dbg">BigTime</a>
         
         <!-- CONTAINER INPUT AND BUTTON -->
+        <!-- ONLY IF PAGE IS CLOCK -->
+        {#if $page.url.pathname === '/clock'}
         <div class="flex items-center">
 
             <!-- CONTAINER INPUT AND RESULTS -->
@@ -64,6 +67,7 @@
             </button>
 
         </div>
-        
+        {/if}
+
     </div>
 </header>
