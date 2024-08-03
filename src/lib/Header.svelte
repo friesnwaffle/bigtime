@@ -37,20 +37,20 @@
         
         <!-- CONTAINER INPUT AND BUTTON -->
         <!-- ONLY IF PAGE IS CLOCK -->
-        {#if $page.url.pathname === '/clock'}
+        {#if $page.url.pathname.includes('/clock')}
         <div class="flex items-center">
 
             <!-- CONTAINER INPUT AND RESULTS -->
             <div class="relative " use:clickOutside on:click_outside={hideInput}>
 
                 <!-- SEARCH INPUT -->
-                <input type="text" bind:value={query} bind:this={inputElement} on:input={showResults} class="hidden outline-none bg-transparent" placeholder="Search...">
+                <input type="text" bind:value={query} bind:this={inputElement} on:input={showResults} class="hidden outline-none bg-transparent" placeholder="Search timezones...">
     
                 <!-- SEARCH RESULTS -->
                 <ul bind:this={resultsElement} class="absolute hidden py-2 ">
                     {#each results as result}
                         <li class="py-1 my-1">
-                            <a data-sveltekit-reload class="block w-full" href="/{result.slug}">{result.displayName}</a>
+                            <a data-sveltekit-reload class="block w-full" href="/clock/{result.slug}">{result.displayName}</a>
                         </li>
                     {/each}
                 </ul>

@@ -1,6 +1,5 @@
 import locationTimezone from 'node-location-timezone';
 
-let query:string
 let results: Result[]
 interface Result {
     displayName: string;

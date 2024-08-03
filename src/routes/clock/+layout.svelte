@@ -35,7 +35,7 @@
             {/if}
         </div>
     </button>
-    <div slot="lower">{now.toLocaleString(DateTime.DATE_HUGE)}</div>
+    <div slot="lower" class="text-2xl md:text-3xl tracking-widest">{now.toLocaleString(DateTime.DATE_HUGE)}</div>
 </PageStructure>
 
 {:else}
