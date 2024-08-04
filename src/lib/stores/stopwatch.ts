@@ -1,23 +1,24 @@
 import { writable } from "svelte/store"
 import { DateTime, Duration } from 'luxon'
-import { goto } from "$app/navigation"
 
 function createSWS() {
     const { subscribe, set, update } = writable({
         running: false,
+        started: false,
         timeLapsed: Duration.fromMillis(0),
         timestamps: []
     })
 
     let intervalId:number
-    const eventDispatcher = new EventTarget()
+    let startTime: DateTime
 
     function run() {
-        let timeLapsed = Duration.fromMillis(0)
-        let startTime = DateTime.now().minus(timeLapsed)
+        subscribe( state => !state.started && (startTime = DateTime.now()) )
+
         intervalId = setInterval(() => {
             update(state => ({
                 ...state,
+                started: true,
                 running: true,
                 timeLapsed: DateTime.now().diff(startTime)
             }))
@@ -36,6 +37,7 @@ function createSWS() {
         clearInterval(intervalId)
         set({
             running: false,
+            started: false,
             timeLapsed: Duration.fromMillis(0),
             timestamps: []
         })
@@ -46,7 +48,6 @@ function createSWS() {
         run,
         pause,
         reset,
-        onTimerEnd: (callback) => eventDispatcher.addEventListener('timerEnd', callback)
     }
 }
 

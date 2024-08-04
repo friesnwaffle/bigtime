@@ -28,20 +28,11 @@
 
     // START OR PAUSE BUTTON
     function playPause() {
-        if (!$ts.running) {
-            timer.started = true
-            timer.running = true
-            ts.run()
-        }
-        else {
-            ts.pause()
-        }
-    }
+        if (timer.obj.as('seconds') <= 0)
+        return
 
-    ts.onTimerEnd(() => {
-        ts.reset()
-        message.innerHTML = 'Timer Ended'
-    })
+        timer.running ? ts.pause() : ts.run()
+    }
 </script>
 
 <svelte:head>
@@ -56,7 +47,8 @@
     <div slot="upper" bind:this={message}>{
         !timer.started ? 'Scroll Up/Down to Set Timer' :
             !timer.running ? 'Timer Paused...' :
-            'Timer Running...'
+            timer.obj.as('seconds') > 0 ?  'Timer Running...'
+            : 'Timer Ended'
     }</div>
 
     <!-- CLOCK -->

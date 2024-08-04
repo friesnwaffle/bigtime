@@ -9,14 +9,13 @@ function createTS() {
         running: false,
     })
 
-    let timerId:number
-    const eventDispatcher = new EventTarget()
+    let intervalId:number
 
     function run() {
-        timerId = setInterval(() => {
+        intervalId = setInterval(() => {
             let remainingSeconds
             subscribe( state => {
-                remainingSeconds = state.obj.as('seconds') - 1
+                remainingSeconds = state.obj.as('seconds')
             })
                         
             if (remainingSeconds > 0) {
@@ -28,15 +27,14 @@ function createTS() {
                 }))
             } 
             else {
-                clearInterval(timerId)
-                eventDispatcher.dispatchEvent(new CustomEvent('timerEnd'))
+                reset()
                 goto('/timer')
             }
         }, 1000)
     }
 
     function pause() {
-        clearInterval(timerId)
+        clearInterval(intervalId)
         update(state => ({
             ...state,
             running: false
@@ -44,6 +42,7 @@ function createTS() {
     }
 
     function reset() {
+        clearInterval(intervalId)
         set({
             obj: Duration.fromMillis(0),
             started: false,
@@ -56,7 +55,6 @@ function createTS() {
         run,
         pause,
         reset,
-        onTimerEnd: (callback) => eventDispatcher.addEventListener('timerEnd', callback)
     }
 }
 
