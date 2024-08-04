@@ -1,7 +1,3 @@
-<svelte:head>
-    <title>Timer</title> 
-</svelte:head>
-
 <script lang="ts">
     import PageStructure from "$lib/PageStructure.svelte";
     import { ts } from "$lib/stores/timer";
@@ -44,9 +40,13 @@
 
     ts.onTimerEnd(() => {
         ts.reset()
-        message.innerText = 'Timer Ended'
+        message.innerHTML = 'Timer Ended'
     })
 </script>
+
+<svelte:head>
+    <title>{timer.started ? timer.obj.toFormat('hh:mm:ss') : 'Timer'}</title> 
+</svelte:head>
 
 <PageStructure>
 

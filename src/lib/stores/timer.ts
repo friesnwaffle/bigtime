@@ -7,7 +7,6 @@ function createTS() {
         obj: Duration.fromMillis(0),
         started: false,
         running: false,
-        intervalId: 0
     })
 
     let timerId:number
@@ -26,7 +25,6 @@ function createTS() {
                     obj: state.obj.minus(1000),
                     started: true,
                     running: true,
-                    intervalId: timerId
                 }))
             } 
             else {
@@ -50,7 +48,6 @@ function createTS() {
             obj: Duration.fromMillis(0),
             started: false,
             running: false,
-            intervalId: 0
         })
     }
 
