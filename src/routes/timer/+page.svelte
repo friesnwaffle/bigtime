@@ -45,8 +45,9 @@
 </script>
 
 <svelte:head>
+    <link rel="icon" href="/icons/timer.svg" />
     <title>
-        { !timer.started ? 'Timer' : timer.obj.toFormat('hh:mm:ss') }
+        { timer.started ? timer.obj.toFormat('hh:mm:ss') : 'Timer' }
     </title> 
 </svelte:head>
 

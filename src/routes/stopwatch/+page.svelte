@@ -28,6 +28,7 @@
 </script>
 
 <svelte:head>
+    <link rel="icon" href="/icons/stopwatch.svg" />
     <title>{ !sw.running ? 'Stopwatch' : sw.timeLapsed.toFormat('hh:mm:ss') }</title> 
 </svelte:head>
 
