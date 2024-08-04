@@ -45,7 +45,9 @@
 </script>
 
 <svelte:head>
-    <title>{timer.started ? timer.obj.toFormat('hh:mm:ss') : 'Timer'}</title> 
+    <title>
+        { !timer.started ? 'Timer' : timer.obj.toFormat('hh:mm:ss') }
+    </title> 
 </svelte:head>
 
 <PageStructure>

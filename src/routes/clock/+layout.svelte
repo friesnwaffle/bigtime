@@ -18,7 +18,9 @@
 
 <svelte:head>
     <title>
-        {timezone ? is12H ? now.toFormat('h:mm a') : now.toFormat('HH:mm') : 'Bigtime'}
+        { !timezone ? 'Bigtime' : is12H ? now.toFormat('h:mm a') : now.toFormat('HH:mm') }
+        in
+        { city ? city : country }
     </title>
 </svelte:head>
 
@@ -47,3 +49,5 @@
     </div>
 
 {/if}
+
+<slot />

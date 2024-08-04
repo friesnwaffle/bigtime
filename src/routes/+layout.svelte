@@ -1,10 +1,5 @@
 <script>
     import "../app.css";
-
-    // import { timer } from "$lib/stores";
-    // const timerStore = timer.store
-    // $: console.log($timerStore);
-    
 </script>
 
 <slot />

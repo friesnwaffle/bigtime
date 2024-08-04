@@ -1,7 +1,3 @@
-<svelte:head>
-    <title>Stopwatch</title> 
-</svelte:head>
-
 <script lang="ts">
     import PageStructure from "$lib/PageStructure.svelte";
     import { sws } from "$lib/stores/stopwatch";
@@ -31,6 +27,9 @@
     }
 </script>
 
+<svelte:head>
+    <title>{ !sw.running ? 'Stopwatch' : sw.timeLapsed.toFormat('hh:mm:ss') }</title> 
+</svelte:head>
 
 <PageStructure>
     <div slot="upper" bind:this={message}>Hit Play Button to Start Stopwatch</div>
