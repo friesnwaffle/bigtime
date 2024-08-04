@@ -18,7 +18,11 @@
 
 <svelte:head>
     <link rel="icon" href="/icons/stopwatch.svg" />
-    <title>{ !sw.started ? 'Stopwatch' : sw.timeLapsed.toFormat('hh:mm:ss') }</title> 
+    <title>
+        { !sw.started ? 'Stopwatch' 
+            : sw.timeLapsed.hours > 0 ? sw.timeLapsed.toFormat('hh:mm:ss') 
+            : sw.timeLapsed.toFormat('mm:ss') }
+    </title> 
 </svelte:head>
 
 <PageStructure>

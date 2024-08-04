@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { Duration } from "luxon";
     import PageStructure from "$lib/PageStructure.svelte";
     import { ps } from "$lib/stores/pomodoro";
 
