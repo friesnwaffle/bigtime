@@ -1,8 +1,3 @@
-<svelte:head>
-    <link rel="icon" href="/icons/pomodoro.svg" />
-    <title>Pomodoro</title> 
-</svelte:head>
-
 <script lang="ts">
     import { Duration } from "luxon";
     import PageStructure from "$lib/PageStructure.svelte";
@@ -11,6 +6,15 @@
     let pomodoro:any
     $: pomodoro = $ps
 </script>
+
+<svelte:head>
+    <link rel="icon" href="/icons/pomodoro.svg" />
+    <title>
+        { !pomodoro.running
+            ? 'Pomodoro'
+            : `${pomodoro.isFocus ? 'Focus' : 'Break'} ${pomodoro.current.toFormat('mm:ss')}` }
+    </title> 
+</svelte:head>
 
 <PageStructure>
 
