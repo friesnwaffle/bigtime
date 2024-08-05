@@ -7,19 +7,16 @@
     let timezone:string,
         city:string,
         country:string,
-        slug:string,
         is12H:boolean = false,
         now:DateTime
 
-    $: slug = $page.params.slug
-    $: if (slug) {
-        [{ timezone, city, country } = getTimezone(slug)]
-    }
-    else {
-        [{ timezone, city, country } = $page.data]
-    }
+    const slug = $page.params.slug
+
+    slug
+        ? { timezone, city, country } = getTimezone(slug)
+        : { timezone, city, country } = $page.data
     
-    $: if (timezone) {
+    if (timezone) {
         now = DateTime.now().setZone(timezone)
         setInterval(() => {
             now = DateTime.now().setZone(timezone);

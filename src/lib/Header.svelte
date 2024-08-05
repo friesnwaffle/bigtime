@@ -50,7 +50,7 @@
                 <ul bind:this={resultsElement} class="absolute hidden py-2 ">
                     {#each results as result}
                         <li class="py-1 my-1">
-                            <a class="block w-full" href="/clock/{result.slug}">{result.displayName}</a>
+                            <a data-sveltekit-reload class="block w-full" href="/clock/{result.slug}">{result.displayName}</a>
                         </li>
                     {/each}
                 </ul>
