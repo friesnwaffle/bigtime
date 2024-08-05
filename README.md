@@ -21,4 +21,6 @@ Big simple clock
 - [ ] SEO
 - [ ] Metatags
 - [x] Handle homepage correctly
-- [ ] Fix tz search reload - not working
+- [x] Fix tz search reload
+- [ ] clear input on search reload
+- [ ] fix mobile layout

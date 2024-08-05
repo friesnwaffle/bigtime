@@ -2,13 +2,24 @@
     import { page } from '$app/stores';
     import { DateTime } from 'luxon'
     import PageStructure from '$lib/PageStructure.svelte';
+    import { getTimezone } from '$lib';
     
-    const geoip = $page.data
-    const { timezone, city, country } = geoip
+    let timezone:string,
+        city:string,
+        country:string,
+        slug:string,
+        is12H:boolean = false,
+        now:DateTime
+
+    $: slug = $page.params.slug
+    $: if (slug) {
+        [{ timezone, city, country } = getTimezone(slug)]
+    }
+    else {
+        [{ timezone, city, country } = $page.data]
+    }
     
-    let is12H:boolean = false
-    let now:any
-    if (timezone) {
+    $: if (timezone) {
         now = DateTime.now().setZone(timezone)
         setInterval(() => {
             now = DateTime.now().setZone(timezone);
