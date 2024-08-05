@@ -17,4 +17,8 @@ Big simple clock
 - The times are displayed in title bar
 
 ### Todo
-- Sound alerts for timer and pomodoro
+- [ ] Sound alerts for timer and pomodoro
+- [ ] SEO
+- [ ] Metatags
+- [x] Handle homepage correctly
+- [ ] Fix tz search reload - not working
