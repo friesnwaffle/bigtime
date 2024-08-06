@@ -2,9 +2,9 @@
     import { page } from "$app/stores";
 </script>
 
-<div class="fixed bottom-0 w-full bg-lpm text-lbg dark:bg-dpm dark:text-dbg text-3xl md:text-4xl 2xl:text-5xl rounded-md">
+<div class=" w-full bg-lpm text-lbg dark:bg-dpm dark:text-dbg text-3xl md:text-4xl 2xl:text-5xl">
     <div class="container mx-auto flex md:gap-10">
-        <a href="/clock" class="flex-grow flex flex-col-reverse items-center py-2 {$page.url.pathname === '/clock' ? 'bg-lsc dark:bg-dsc rounded-md shadow-md' : ''}">
+        <a href="/clock" class="flex-grow flex flex-col-reverse items-center py-2 {$page.url.pathname.includes('/clock') ? 'bg-lsc dark:bg-dsc rounded-md shadow-md' : ''}">
             <span class="text-sm">Clock</span>
             <img src="/icons/clock.svg" alt="clock" class="w-10">
         </a>

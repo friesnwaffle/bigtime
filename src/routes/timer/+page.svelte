@@ -57,7 +57,7 @@
     </div>
 
 
-    <div slot="lower" class="flex justify-center align-center gap-10">
+    <div slot="lower" class="flex justify-center align-center gap-10 text-4xl">
 
         <!-- RESET BTN -->
         <button on:click={() => ts.reset()}>
@@ -88,4 +88,5 @@
         </button>
 
     </div>
+    
 </PageStructure>

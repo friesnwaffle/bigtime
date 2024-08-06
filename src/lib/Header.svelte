@@ -2,7 +2,7 @@
     import search from "$lib/search";
     import { clickOutside } from "$lib/clickOutside";
     import { page } from "$app/stores";
-    import { onMount } from "svelte";
+    import { afterUpdate, onMount } from "svelte";
 
     let query:string
     let inputElement:HTMLInputElement
@@ -31,33 +31,35 @@
     }
 
     let notificationPermission = ""
-    // onMount(() => {
-    //     notificationPermission = Notification.permission
-    //     if (notificationPermission !== "granted") {
-    //         Notification
-    //     }
-    // })
-    let bellButton:HTMLButtonElement
+    onMount(() => notificationPermission = Notification.permission)
     function askNotificationPermission() {
-
         if (!("Notification" in window))
         return
 
         Notification.requestPermission().then((permission) => {
             notificationPermission = permission
-            // bellButton.style.display = permission === "granted" ? "none" : "block"
         })
     }
-    onMount(() => notificationPermission = Notification.permission)
+    
+    let slugBeforeUpdate = $page.params.slug
+    afterUpdate(() => {
+        if ($page.params.slug !== slugBeforeUpdate) {
+            query = ""
+            results = []
+            inputElement.classList.add('hidden')
+        }
+        slugBeforeUpdate = $page.params.slug
+    })
+  
 </script>
 
-<header class="fixed top-0 left-0 right-0">
+<header class="">
     <div class="container mx-auto flex justify-between text-sm md:font-bold">
         <!-- LOGO -->
         <div class="uppercase tracking-widest font-bold py- flex items-center gap-5 ">
             <a href="/" class="px-5 py-3 bg-lsc dark:text-dbg">BigTime</a>
             {#if notificationPermission !== "granted"}
-            <button bind:this={bellButton} on:click={askNotificationPermission}>
+            <button on:click={askNotificationPermission} title="Allow Notifications">
                 <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2">
                         <g>
@@ -95,7 +97,7 @@
                 <ul bind:this={resultsElement} class="absolute hidden py-2 ">
                     {#each results as result}
                         <li class="py-1 my-1">
-                            <a data-sveltekit-reload class="block w-full" href="/clock/{result.slug}">{result.displayName}</a>
+                            <a class="block w-full" href="/clock/{result.slug}">{result.displayName}</a>
                         </li>
                     {/each}
                 </ul>

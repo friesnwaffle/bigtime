@@ -10,13 +10,13 @@
         is12H:boolean = false,
         now:DateTime
 
-    const slug = $page.params.slug
+    $: slug = $page.params.slug
 
-    slug
+    $: slug
         ? { timezone, city, country } = getTimezone(slug)
         : { timezone, city, country } = $page.data
     
-    if (timezone) {
+    $: if (timezone) {
         now = DateTime.now().setZone(timezone)
         setInterval(() => {
             now = DateTime.now().setZone(timezone);
