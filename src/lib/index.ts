@@ -39,6 +39,7 @@ export function getTimezone(query:string) {
 
     if (countryData) {
         country = countryData.name
+        city = ''
         // COUNTRY HAS ONLY ONE TIMEZONE
         if (countryData?.timezones?.length === 1) {
             timezone = countryData.timezones[0]

@@ -1,20 +1,21 @@
 import { writable } from "svelte/store"
 import { DateTime, Duration } from 'luxon'
 
-// function createClock() {
-//     const { subscribe, set, update } = writable({
-//         timezone: '',
-//         city: '',
-//         country: ''
-//     })
+function createClock() {
+    const { subscribe, set, update } = writable({
+        slug: ""
+    })
 
-//     return {
-//         subscribe,
-//     }
-// }
+    function reset() {
+        set({
+            slug: ""
+        })
+    }
 
-// export const cs = writable({
-//     timezone: '',
-//     city: '',
-//     country: ''
-// })
+    return {
+        subscribe,
+        reset
+    }
+}
+
+export const cs = createClock()

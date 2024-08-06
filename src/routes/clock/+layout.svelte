@@ -14,7 +14,7 @@
 
     $: slug
         ? { timezone, city, country } = getTimezone(slug)
-        : { timezone, city, country } = $page.data
+        : { timezone, city, country } = $page.data    
     
     $: if (timezone) {
         now = DateTime.now().setZone(timezone)
