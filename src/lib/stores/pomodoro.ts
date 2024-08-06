@@ -3,8 +3,8 @@ import { DateTime, Duration } from 'luxon'
 import { goto } from "$app/navigation"
 import { alerts } from "$lib"
 
-let focus = Duration.fromObject({ seconds: 5 })
-let brk = Duration.fromObject({ seconds: 3 })
+let focus = Duration.fromObject({ minutes: 25 })
+let brk = Duration.fromObject({ minutes: 5 })
 
 function createPS() {
     const { subscribe, set, update } = writable({
