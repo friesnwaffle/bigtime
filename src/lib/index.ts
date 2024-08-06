@@ -1,7 +1,26 @@
-
+// NORMALISE NAME
 export function normaliseName(input:String) {
     return input.replace(/[\s_-]+/g, '').toLowerCase();
 }
+
+// SOUND ALERTS
+function createAlerts() {
+    function start() {
+        const audio = new Audio('/sounds/beeponce.mp3')
+        audio.play()
+    }
+    function end() {
+        const audio = new Audio('/sounds/beeptwice.mp3')
+        audio.play()
+    }
+
+    return {
+        start,
+        end
+    }
+}
+
+export const alerts = createAlerts()
 
 // GET TIMEZONE FUNCTION
 import locationTimezone from 'node-location-timezone';

@@ -1,8 +1,10 @@
 import { writable } from "svelte/store"
 import { DateTime, Duration } from 'luxon'
+import { goto } from "$app/navigation"
+import { alerts } from "$lib"
 
-let focus = Duration.fromObject({ minutes: 25 })
-let brk = Duration.fromObject({ minutes: 5 })
+let focus = Duration.fromObject({ seconds: 5 })
+let brk = Duration.fromObject({ seconds: 3 })
 
 function createPS() {
     const { subscribe, set, update } = writable({
@@ -28,14 +30,28 @@ function createPS() {
             }
             else {
                 clearInterval(intervalId)
-                beeptwice()
+
+                // alerts.end()
+
+                let isFocus:boolean
+                subscribe(state => isFocus = state.isFocus)
+                const notification = new Notification(isFocus ? "Focus Session Over" : "Break Over", { 
+                    body: `Click to Start ${isFocus ? "Break" : "Focus Session"}`, icon: '/icons/bell.svg' 
+                })
+                notification.onclick = (e) => {
+                    if (!isFocus) {
+                        window.focus()
+                        goto('/pomodoro')
+                    }
+                    run()
+                }
+
                 update(state => ({
                     ...state,
                     running: false,
                     isFocus: !state.isFocus,
                     current: state.isFocus ? brk : focus
                 }))
-                
             }
         }, 1000)
     }
@@ -67,12 +83,3 @@ function createPS() {
 }
 
 export const ps = createPS()
-
-function beeponce() {
-    const beeponce = new Audio('/sounds/beeponce.mp3')
-    beeponce.play()
-}
-function beeptwice() {
-    const beeptwice = new Audio('/sounds/beeptwice.mp3')
-    beeptwice.play()
-}

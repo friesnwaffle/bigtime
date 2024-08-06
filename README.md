@@ -18,6 +18,7 @@ Big simple clock
 
 ### Todo
 - [ ] Sound alerts for timer and pomodoro
+- [ ] notifications
 - [ ] SEO
 - [ ] Metatags
 - [x] Handle homepage correctly

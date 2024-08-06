@@ -2,7 +2,6 @@
     import PageStructure from "$lib/PageStructure.svelte";
     import { ts } from "$lib/stores/timer";
 
-    let message:HTMLDivElement
     let timer:any
     $: timer = $ts
 
@@ -46,12 +45,7 @@
 
 <PageStructure>
 
-    <div slot="upper" bind:this={message}>{
-        !timer.started ? 'Scroll Up/Down to Set Timer' :
-            !timer.running ? 'Timer Paused...' :
-            timer.obj.as('seconds') > 0 ?  'Timer Running...'
-            : 'Timer Ended'
-    }</div>
+    <div slot="upper">{timer.message}</div>
 
     <!-- CLOCK -->
     <div slot="clock" class="flex justify-center">

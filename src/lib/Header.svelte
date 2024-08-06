@@ -2,6 +2,7 @@
     import search from "$lib/search";
     import { clickOutside } from "$lib/clickOutside";
     import { page } from "$app/stores";
+    import { onMount } from "svelte";
 
     let query:string
     let inputElement:HTMLInputElement
@@ -28,12 +29,56 @@
     function divblur() {
         alert('blureed')
     }
+
+    let notificationPermission = ""
+    // onMount(() => {
+    //     notificationPermission = Notification.permission
+    //     if (notificationPermission !== "granted") {
+    //         Notification
+    //     }
+    // })
+    let bellButton:HTMLButtonElement
+    function askNotificationPermission() {
+
+        if (!("Notification" in window))
+        return
+
+        Notification.requestPermission().then((permission) => {
+            notificationPermission = permission
+            // bellButton.style.display = permission === "granted" ? "none" : "block"
+        })
+    }
+    onMount(() => notificationPermission = Notification.permission)
 </script>
 
 <header class="fixed top-0 left-0 right-0">
     <div class="container mx-auto flex justify-between text-sm md:font-bold">
         <!-- LOGO -->
-        <a href="/" class="uppercase tracking-widest font-bold px-5 py-3 bg-lsc dark:text-dbg">BigTime</a>
+        <div class="uppercase tracking-widest font-bold py- flex items-center gap-5 ">
+            <a href="/" class="px-5 py-3 bg-lsc dark:text-dbg">BigTime</a>
+            {#if notificationPermission !== "granted"}
+            <button bind:this={bellButton} on:click={askNotificationPermission}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+                        <g>
+                            <path stroke-dasharray="4" stroke-dashoffset="4" d="M12 3V5">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.2s" values="4;0" />
+                            </path>
+                            <path stroke-dasharray="28" stroke-dashoffset="28" d="M12 5C8.68629 5 6 7.68629 6 11L6 17C5 17 4 18 4 19H12M12 5C15.3137 5 18 7.68629 18 11L18 17C19 17 20 18 20 19H12">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.4s" values="28;0" />
+                            </path>
+                            <animateTransform attributeName="transform" begin="0.8s" dur="6s" keyTimes="0;0.05;0.15;0.2;1" repeatCount="indefinite" type="rotate" values="0 12 3;3 12 3;-3 12 3;0 12 3;0 12 3" />
+                        </g>
+                        <path stroke-dasharray="8" stroke-dashoffset="8" d="M10 20C10 21.1046 10.8954 22 12 22C13.1046 22 14 21.1046 14 20">
+                            <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="8;0" />
+                            <animateTransform attributeName="transform" begin="1s" dur="6s" keyTimes="0;0.05;0.15;0.2;1" repeatCount="indefinite" type="rotate" values="0 12 8;6 12 8;-6 12 8;0 12 8;0 12 8" />
+                        </path>
+                    </g>
+                </svg>
+            </button>
+            {/if}
+            
+        </div>
         
         <!-- CONTAINER INPUT AND BUTTON -->
         <!-- ONLY IF PAGE IS CLOCK -->
