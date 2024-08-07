@@ -27,6 +27,6 @@ Big simple clock
 - [x] fix mobile layout
 - [ ] fix notification system on mobile
 - [x] timer scroll on mobile
-- [ ] timer scroll buttons
+- [x] timer scroll buttons
 - [ ] icons consistency
 - [ ] logo 
