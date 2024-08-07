@@ -26,4 +26,7 @@ Big simple clock
 - [x] clear input on search reload
 - [x] fix mobile layout
 - [ ] fix notification system on mobile
-- [ ] timer scroll on mobile
+- [x] timer scroll on mobile
+- [ ] timer scroll buttons
+- [ ] icons consistency
+- [ ] logo 

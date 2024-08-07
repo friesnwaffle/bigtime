@@ -11,7 +11,7 @@
         if (timer.started) return      // Do nothing if Timer started
 
         const currY = e.touches[0].clientY
-        const deltaY = Math.round(currY - su.startY)
+        const deltaY = Math.round(su.startY - currY)
         updateUnit(su.unit, deltaY)
     }
 
@@ -21,10 +21,10 @@
 
     // SCROLL OVER ANY UNIT TO SET TIMER
     function updateUnit(unit:string, deltaY:number) {
-        if (deltaY < 0 && timer.obj.get(unit) < 59) {       // Scroll Up
+        if (deltaY > 0 && timer.obj.get(unit) < 59) {       // Scroll Up
             timer.obj = timer.obj.plus({ [unit]: 1})
         }
-        else if (deltaY > 0 && timer.obj.get(unit) > 0) {       // Scroll Down untill 0
+        else if (deltaY < 0 && timer.obj.get(unit) > 0) {       // Scroll Down untill 0
             timer.obj = timer.obj.minus({ [unit]: 1})
         }
     }    
@@ -56,28 +56,64 @@
 
     <!-- CLOCK -->
     <div slot="clock" class="flex justify-center">
-        <div 
-            class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" 
-            on:touchstart={(e) => { su.startY = e.touches[0].clientY; su.unit = 'hours' }} 
-            on:touchmove={(e) => handleTouch(e, 'hours')} 
-            on:wheel={(e) => {su.unit = 'hours'; handleWheel(e)}}>
-            {timer.obj.toFormat('hh:mm:ss').split(':')[0]}
+        <div class="relative group">
+            <button class="text-3xl absolute -top-5 md:top-0 lg:top-5 left-1/2 -translate-x-1/2 hidden group-hover:block" on:click={e => updateUnit('hours', 1)}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                    <path fill="currentColor" d="M216.49 168.49a12 12 0 0 1-17 0L128 97l-71.51 71.49a12 12 0 0 1-17-17l80-80a12 12 0 0 1 17 0l80 80a12 12 0 0 1 0 17" />
+                </svg>
+            </button>
+            <div 
+                class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" 
+                on:touchstart={(e) => { su.startY = e.touches[0].clientY; su.unit = 'hours' }} 
+                on:touchmove={(e) => handleTouch(e, 'hours')} 
+                on:wheel={(e) => {su.unit = 'hours'; handleWheel(e)}}>
+                {timer.obj.toFormat('hh:mm:ss').split(':')[0]}
+            </div>
+            <button class="text-3xl absolute -bottom-5 md:bottom-0 lg:bottom-5 left-1/2 -translate-x-1/2 hidden group-hover:block" on:click={e => updateUnit('hours', -1)}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                    <path fill="currentColor" d="m216.49 104.49l-80 80a12 12 0 0 1-17 0l-80-80a12 12 0 0 1 17-17L128 159l71.51-71.52a12 12 0 0 1 17 17Z" />
+                </svg>
+            </button>
         </div>
         :
-        <div 
-            class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" 
-            on:touchstart={(e) => { su.startY = e.touches[0].clientY; su.unit = 'minutes' }} 
-            on:touchmove={(e) => handleTouch(e, 'minutes')} 
-            on:wheel={(e) => {su.unit = 'minutes'; handleWheel(e)}}>
-            {timer.obj.toFormat('hh:mm:ss').split(':')[1]}
+        <div class="relative group">
+            <button class="text-3xl absolute -top-5 md:top-0 lg:top-5 left-1/2 -translate-x-1/2 hidden group-hover:block" on:click={e => updateUnit('minutes', 1)}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                    <path fill="currentColor" d="M216.49 168.49a12 12 0 0 1-17 0L128 97l-71.51 71.49a12 12 0 0 1-17-17l80-80a12 12 0 0 1 17 0l80 80a12 12 0 0 1 0 17" />
+                </svg>
+            </button>
+            <div 
+                class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" 
+                on:touchstart={(e) => { su.startY = e.touches[0].clientY; su.unit = 'minutes' }} 
+                on:touchmove={(e) => handleTouch(e, 'minutes')} 
+                on:wheel={(e) => {su.unit = 'minutes'; handleWheel(e)}}>
+                {timer.obj.toFormat('hh:mm:ss').split(':')[1]}
+            </div>
+            <button class="text-3xl absolute -bottom-5 md:bottom-0 lg:bottom-5 left-1/2 -translate-x-1/2 hidden group-hover:block" on:click={e => updateUnit('minutes', -1)}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                    <path fill="currentColor" d="m216.49 104.49l-80 80a12 12 0 0 1-17 0l-80-80a12 12 0 0 1 17-17L128 159l71.51-71.52a12 12 0 0 1 17 17Z" />
+                </svg>
+            </button>
         </div>
         :
-        <div 
-            class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" 
-            on:touchstart={(e) => { su.startY = e.touches[0].clientY; su.unit = 'seconds' }} 
-            on:touchmove={(e) => handleTouch(e, 'seconds')} 
-            on:wheel={(e) => {su.unit = 'seconds'; handleWheel(e)}}>
-            {timer.obj.toFormat('hh:mm:ss').split(':')[2]}
+        <div class="relative group">
+            <button class="text-3xl absolute -top-5 md:top-0 lg:top-5 left-1/2 -translate-x-1/2 hidden group-hover:block" on:click={e => updateUnit('seconds', 1)}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                    <path fill="currentColor" d="M216.49 168.49a12 12 0 0 1-17 0L128 97l-71.51 71.49a12 12 0 0 1-17-17l80-80a12 12 0 0 1 17 0l80 80a12 12 0 0 1 0 17" />
+                </svg>
+            </button>
+            <div 
+                class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" 
+                on:touchstart={(e) => { su.startY = e.touches[0].clientY; su.unit = 'seconds' }} 
+                on:touchmove={(e) => handleTouch(e, 'seconds')} 
+                on:wheel={(e) => {su.unit = 'seconds'; handleWheel(e)}}>
+                {timer.obj.toFormat('hh:mm:ss').split(':')[2]}
+            </div>
+            <button class="text-3xl absolute -bottom-5 md:bottom-0 lg:bottom-5 left-1/2 -translate-x-1/2 hidden group-hover:block" on:click={e => updateUnit('seconds', -1)}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                    <path fill="currentColor" d="m216.49 104.49l-80 80a12 12 0 0 1-17 0l-80-80a12 12 0 0 1 17-17L128 159l71.51-71.52a12 12 0 0 1 17 17Z" />
+                </svg>
+            </button>
         </div>
     </div>
 
