@@ -31,12 +31,12 @@ function createPS() {
             else {
                 clearInterval(intervalId)
 
-                // alerts.end()
+                alerts.end()
 
                 let isFocus:boolean
                 subscribe(state => isFocus = state.isFocus)
                 const notification = new Notification(isFocus ? "Focus Session Over" : "Break Over", { 
-                    body: `Click to Start ${isFocus ? "Break" : "Focus Session"}`, icon: '/icons/bell.svg' 
+                    body: `Click to Start ${isFocus ? "Break" : "Focus Session"}`, icon: '/logo.svg' 
                 })
                 notification.onclick = (e) => {
                     if (!isFocus) {

@@ -31,9 +31,9 @@ function createTS() {
             } 
             else {
                 reset()
-                // alerts.end()
+                alerts.end()
                 update(state => ({...state, message:"Timer Ended"}))
-                const notification = new Notification("Timer Ended", { body: "Click to set another Timer", icon: '/icons/bell.svg' })
+                const notification = new Notification("Timer Ended", { body: "Click to Set Another Timer", icon: '/logo.svg' })
                 notification.onclick = (e) => {
                     window.focus()
                     goto('/timer')

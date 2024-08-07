@@ -25,7 +25,6 @@
 </script>
 
 <svelte:head>
-    <link rel="icon" href="/icons/clock.svg" />
     <title>
         { !timezone ? 'Bigtime' : is12H ? now.toFormat('h:mm a') : now.toFormat('HH:mm') }
         in

@@ -8,7 +8,6 @@
 </script>
 
 <svelte:head>
-    <link rel="icon" href="/icons/pomodoro.svg" />
     <title>
         { !pomodoro.running
             ? 'Pomodoro'
