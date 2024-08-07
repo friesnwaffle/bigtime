@@ -27,9 +27,6 @@
             ? resultsElement.classList.remove('hidden') 
             : resultsElement.classList.add('hidden')
     }
-    function divblur() {
-        alert('blureed')
-    }
 
     // Notification Icon
     let notificationPermission = ""
@@ -89,7 +86,7 @@
             {/if}
 
             {#if notificationPermission !== "granted"}
-                <button class="text-2xl" on:click={askNotificationPermission} title="Allow Notifications">{@html icons.bell}</button>
+                <button class="text-2xl" on:click={askNotificationPermission} title="Allow Push Notifications">{@html icons.bell}</button>
             {/if}
             
         </div>
