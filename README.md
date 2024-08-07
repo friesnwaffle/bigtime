@@ -24,6 +24,6 @@ Big simple clock
 - [x] Handle homepage correctly
 - [x] Fix tz search reload
 - [x] clear input on search reload
-- [ ] fix mobile layout
+- [x] fix mobile layout
 - [ ] fix notification system on mobile
 - [ ] timer scroll on mobile

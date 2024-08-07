@@ -5,25 +5,32 @@
     let timer:any
     $: timer = $ts
 
+    let su = {unit: '', startY: 0}      // State for each Unit
+
+    function handleTouch(e:TouchEvent, unit:string) {
+        if (timer.started) return      // Do nothing if Timer started
+
+        const currY = e.touches[0].clientY
+        const deltaY = Math.round(currY - su.startY)
+        updateUnit(su.unit, deltaY)
+    }
+
+    function handleWheel(e:WheelEvent) {
+        updateUnit(su.unit, e.deltaY)
+    }
+
     // SCROLL OVER ANY UNIT TO SET TIMER
-    function scroll(e:WheelEvent, unit) {
-
-        // ONLY IF TIMER NEITHER STARTED NOR RUNNING
-        if (timer.started || timer.running) 
-        return
-
-        if (e.deltaY < 0 && timer.obj.get(unit) < 60) {        // SCROLL UP TO INCREASE UPTO 60
+    function updateUnit(unit:string, deltaY:number) {
+        if (deltaY < 0 && timer.obj.get(unit) < 59) {       // Scroll Up
             timer.obj = timer.obj.plus({ [unit]: 1})
         }
-        else if (e.deltaY > 0 && timer.obj.get(unit) > 0) {    // SCROLL DOWN TO DECREASE UNTILL 0
+        else if (deltaY > 0 && timer.obj.get(unit) > 0) {       // Scroll Down untill 0
             timer.obj = timer.obj.minus({ [unit]: 1})
         }
-    }
+    }    
 
     // ADD ONE MIN BUTTON, WORKS AT ALL TIMES
-    function addMinute() {
-        timer.obj = timer.obj.plus({minutes: 1})
-    }
+    const addMinute = () => timer.obj = timer.obj.plus({minutes: 1})
 
     // START OR PAUSE BUTTON
     function playPause() {
@@ -49,13 +56,30 @@
 
     <!-- CLOCK -->
     <div slot="clock" class="flex justify-center">
-        <div class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" on:wheel={(e) => scroll(e, 'hours')}>{timer.obj.toFormat('hh:mm:ss').split(':')[0]}</div>
+        <div 
+            class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" 
+            on:touchstart={(e) => { su.startY = e.touches[0].clientY; su.unit = 'hours' }} 
+            on:touchmove={(e) => handleTouch(e, 'hours')} 
+            on:wheel={(e) => {su.unit = 'hours'; handleWheel(e)}}>
+            {timer.obj.toFormat('hh:mm:ss').split(':')[0]}
+        </div>
         :
-        <div class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" on:wheel={(e) => scroll(e, 'minutes')}>{timer.obj.toFormat('hh:mm:ss').split(':')[1]}</div>
+        <div 
+            class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" 
+            on:touchstart={(e) => { su.startY = e.touches[0].clientY; su.unit = 'minutes' }} 
+            on:touchmove={(e) => handleTouch(e, 'minutes')} 
+            on:wheel={(e) => {su.unit = 'minutes'; handleWheel(e)}}>
+            {timer.obj.toFormat('hh:mm:ss').split(':')[1]}
+        </div>
         :
-        <div class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" on:wheel={(e) => scroll(e, 'seconds')}>{timer.obj.toFormat('hh:mm:ss').split(':')[2]}</div>
+        <div 
+            class="{timer.started ? 'cursor-not-allowed' : 'cursor-ns-resize'}" 
+            on:touchstart={(e) => { su.startY = e.touches[0].clientY; su.unit = 'seconds' }} 
+            on:touchmove={(e) => handleTouch(e, 'seconds')} 
+            on:wheel={(e) => {su.unit = 'seconds'; handleWheel(e)}}>
+            {timer.obj.toFormat('hh:mm:ss').split(':')[2]}
+        </div>
     </div>
-
 
     <div slot="lower" class="flex justify-center align-center gap-10 text-4xl">
 
