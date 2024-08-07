@@ -3,7 +3,7 @@
     import Nav from "./Nav.svelte";
 </script>
 
-<main class="w-screen h-screen bg-lbg text-lpm dark:bg-dbg dark:text-dpm font-primary flex flex-col">
+<main class="w-screen h-screen overflow-hidden bg-lbg text-lpm dark:bg-dbg dark:text-dpm font-primary flex flex-col">
     <Header />
     <div class="container mx-auto text-center flex-1 grid content-center">
         <div class=""><slot name="upper" /></div>
