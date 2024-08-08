@@ -30,3 +30,5 @@ Big simple clock
 - [x] timer scroll buttons
 - [x] icons consistency
 - [x] logo 
+- [ ] slots for timezones
+- [x] landing page

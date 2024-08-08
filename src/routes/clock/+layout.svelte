@@ -7,7 +7,7 @@
     let timezone:string,
         city:string,
         country:string,
-        is12H:boolean = false,
+        is12H:boolean = true,
         now:DateTime
 
     $: slug = $page.params.slug
