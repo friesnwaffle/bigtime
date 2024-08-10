@@ -46,7 +46,12 @@
     <title>
         Timer
         { timer.running ? timer.obj.hours > 0 ? timer.obj.toFormat("hh:mm:ss"): timer.obj.toFormat("mm:ss") : '' }
-    </title >
+    </title>
+    <meta property="og:title" content="Timer - Set and Track Time">
+    <meta property="og:description" content="Effortlessly set and manage countdowns with Bigtime's Timer. Scroll to adjust time and stay on top of your tasks.">
+
+    <meta name="twitter:title" content="Timer - Set and Track Time">
+    <meta name="twitter:description" content="Effortlessly set and manage countdowns with Bigtime's Timer. Scroll to adjust time and stay on top of your tasks.">
 </svelte:head>
 
 <PageStructure>

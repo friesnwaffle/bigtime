@@ -30,6 +30,11 @@
         in
         { city ? city : country }
     </title>
+    <meta property="og:title" content="Clock - Local & World Time">
+    <meta property="og:description" content="View your local time or explore global time zones with Bigtime's Clock. Easily switch between 12H and 24H formats.">
+
+    <meta name="twitter:title" content="Clock - Local & World Time">
+    <meta name="twitter:description" content="View your local time or explore global time zones with Bigtime's Clock. Easily switch between 12H and 24H formats.">
 </svelte:head>
 
 {#if timezone}

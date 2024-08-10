@@ -13,6 +13,11 @@
             ? 'Pomodoro'
             : `${pomodoro.isFocus ? 'Focus' : 'Break'} ${pomodoro.current.toFormat('mm:ss')}` }
     </title> 
+    <meta property="og:title" content="Pomodoro - Focus & Productivity">
+    <meta property="og:description" content="Boost your productivity with Bigtime's Pomodoro. Work in 25-minute intervals with 5-minute breaks for optimal focus.">
+    
+    <meta name="twitter:title" content="Pomodoro - Focus & Productivity">
+    <meta name="twitter:description" content="Boost your productivity with Bigtime's Pomodoro. Work in 25-minute intervals with 5-minute breaks for optimal focus.">
 </svelte:head>
 
 <PageStructure>
