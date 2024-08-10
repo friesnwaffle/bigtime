@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bigtime-psi.vercel.app/sitemap.xml

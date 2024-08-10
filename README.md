@@ -20,7 +20,7 @@ Big simple clock
 - [x] Sound alerts for timer and pomodoro
 - [x] notifications
 - [ ] SEO
-- [ ] Metatags
+- [x] Metatags
 - [x] Handle homepage correctly
 - [x] Fix tz search reload
 - [x] clear input on search reload
@@ -32,3 +32,4 @@ Big simple clock
 - [x] logo 
 - [ ] slots for timezones
 - [x] landing page
+- [ ] sitemap.xml

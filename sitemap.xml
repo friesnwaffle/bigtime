@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://www.bigtime.io/src/app.html</loc>
+		<priority>0.82</priority>
+		<lastmod>2024-08-08</lastmod>
+	</url>
+	<url>
+		<loc>https://www.bigtime.io/node_modules/@sveltejs/kit/src/core/config/default-error.html</loc>
+		<priority>0.36</priority>
+		<lastmod>2024-08-02</lastmod>
+	</url>
+	<url>
+		<loc>https://www.bigtime.io/node_modules/.pnpm/@sveltejs+kit@2.5.19_@sveltejs+vite-plugin-svelte@3.1.1_svelte@4.2.18_vite@5.3.5__svelte@4.2.18_vite@5.3.5/node_modules/@sveltejs/kit/src/core/config/default-error.html</loc>
+		<priority>0.09</priority>
+		<lastmod>2024-08-02</lastmod>
+	</url>
+	<url>
+		<loc>https://www.bigtime.io/node_modules/.pnpm/@sveltejs+adapter-auto@3.2.2_@sveltejs+kit@2.5.19_@sveltejs+vite-plugin-svelte@3.1.1_svelte@4_lbtrje5rpuob2h7r5wgh5ulqza/node_modules/@sveltejs/kit/src/core/config/default-error.html</loc>
+		<priority>0.09</priority>
+		<lastmod>2024-08-02</lastmod>
+	</url>
+</urlset>
