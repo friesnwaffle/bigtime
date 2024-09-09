@@ -1,21 +1,23 @@
 import { writable } from "svelte/store"
 import { DateTime, Duration } from 'luxon'
 
-function createClock() {
-    const { subscribe, set, update } = writable({
-        slug: ""
-    })
+export let geoipData = writable()
 
-    function reset() {
-        set({
-            slug: ""
-        })
-    }
+// function createClock() {
+//     const { subscribe, set, update } = writable({
+//         geoip: {}
+//     })
 
-    return {
-        subscribe,
-        reset
-    }
-}
+//     function reset() {
+//         set({
+//             geoip: {}
+//         })
+//     }
 
-export const cs = createClock()
+//     return {
+//         subscribe,
+//         reset
+//     }
+// }
+
+// export const cs = createClock()

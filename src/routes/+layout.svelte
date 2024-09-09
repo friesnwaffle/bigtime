@@ -1,6 +1,18 @@
-<script>
+<script lang="ts">
     import "../app.css";
     import { page } from "$app/stores";
+    import { onMount } from "svelte";
+    import { geoipData } from "$lib/stores/clock";
+
+    onMount(async() => {
+        try {
+            const response = await fetch('https://freeipapi.com/api/json')
+            $geoipData = await response.json()
+        }
+        catch (error) {
+            console.error(error)
+        }
+    })
 </script>
 
 <svelte:head>

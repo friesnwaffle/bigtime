@@ -1,7 +1,7 @@
 <script lang="ts">
     import { DateTime } from 'luxon'
     import PageStructure from '$lib/PageStructure.svelte';
-    import { onMount } from 'svelte';
+    import { geoipData } from '$lib/stores/clock';
     
     let timezone:string,
         city:string,
@@ -9,19 +9,11 @@
         is12H:boolean = true,
         now:DateTime
 
-    onMount(async() => {
-        try {
-            const response = await fetch('https://freeipapi.com/api/json')
-            const geoip = await response.json()
-            
-            timezone = geoip.timeZone
-            country = geoip.countryName
-            city = geoip.cityName
-        }
-        catch (error) {
-            console.error(error)
-        }
-    })
+    $: if ($geoipData) {
+        timezone = $geoipData.timeZone
+        country = $geoipData.countryName
+        city = $geoipData.cityName
+    }
     
     $: if (timezone) {
         now = DateTime.now().setZone(timezone)
