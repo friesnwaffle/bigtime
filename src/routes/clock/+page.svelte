@@ -2,6 +2,8 @@
     import { DateTime } from 'luxon'
     import PageStructure from '$lib/PageStructure.svelte';
     import { geoipData } from '$lib/stores/clock';
+    import Header from '$lib/Header.svelte';
+    import Nav from '$lib/Nav.svelte';
     
     let timezone:string,
         city:string,
@@ -25,7 +27,7 @@
 
 <svelte:head>
     <title>
-        { !timezone ? 'Bigtime' : is12H ? now.toFormat('h:mm a') + 'in { city ? city : country }' : now.toFormat('HH:mm') + 'in { city ? city : country }' }
+        { !timezone ? 'Bigtime' : is12H ? now.toFormat('h:mm a') : now.toFormat('HH:mm') }
     </title>
     <meta property="og:title" content="Clock - Local & World Time">
     <meta property="og:description" content="View your local time or explore global time zones with Bigtime's Clock. Easily switch between 12H and 24H formats.">
@@ -52,10 +54,12 @@
 
 {:else}
 
-    <div class="h-[90vh] grid place-content-center justify-self-center text-center">
+<PageStructure>
+    <div slot="error">
         <h1 class="font-clock text-9xl">404</h1>
         <h2 class="text-6xl font-thin mb-10">Bad Timing</h2>
-        <p>Something went wrong. Please try again later.</p>
+        <p class="mb-40">Something went wrong. Please try again later.</p>
     </div>
+</PageStructure>
 
 {/if}
