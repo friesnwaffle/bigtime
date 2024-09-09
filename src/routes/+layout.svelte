@@ -3,6 +3,8 @@
     import { page } from "$app/stores";
     import { onMount } from "svelte";
     import { geoipData } from "$lib/stores/clock";
+    import Analytics from "$lib/analytics.svelte";
+    import { inject } from '@vercel/analytics'
 
     onMount(async() => {
         try {
@@ -25,6 +27,7 @@
     <meta name="twitter:url" content={$page.url.href}>
 </svelte:head>
 
+<Analytics />
 <slot />
 
 <style>
