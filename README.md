@@ -17,21 +17,5 @@ Big simple clock
 - The times are displayed in title bar
 
 ### Todo
-- [x] Sound alerts for timer and pomodoro
-- [x] notifications
-- [ ] SEO
-- [x] Metatags
-- [x] Handle homepage correctly
-- [x] Fix tz search reload
-- [x] clear input on search reload
-- [x] fix mobile layout
-- [ ] fix notification system on mobile
-- [x] timer scroll on mobile
-- [x] timer scroll buttons
-- [x] icons consistency
-- [x] logo 
+- [ ] mobile notifications
 - [ ] slots for timezones
-- [x] landing page
-- [ ] sitemap.xml
-- [ ] clock reset
-- [ ] add donation
