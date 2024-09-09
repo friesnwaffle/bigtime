@@ -56,7 +56,7 @@
 <header class="">
     <div class="container mx-auto flex justify-between text-sm md:font-bold">
         <!-- Logo -->
-        <a href="/" class="uppercase tracking-[4px] font-normal px-4 bg-lsc dark:text-dbg flex items-center">Bigtime</a>
+        <a href="/" class="uppercase tracking-[4px] font-normal px-4 md:px-6 bg-lsc dark:text-dbg flex items-center">Bigtime</a>
         
         <div class="flex gap-4 items-center py-2">
             <!-- Search -->
