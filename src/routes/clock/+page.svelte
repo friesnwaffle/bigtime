@@ -11,12 +11,12 @@
 
     onMount(async() => {
         try {
-            const response = await fetch('http://ip-api.com/json/')
+            const response = await fetch('https://freeipapi.com/api/json')
             const geoip = await response.json()
             
-            timezone = geoip.timezone
-            country = geoip.country
-            city = geoip.city
+            timezone = geoip.timeZone
+            country = geoip.countryName
+            city = geoip.cityName
         }
         catch (error) {
             console.error(error)
