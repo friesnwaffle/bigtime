@@ -1,8 +1,6 @@
 <script lang="ts">
-    import { page } from '$app/stores';
     import { DateTime } from 'luxon'
     import PageStructure from '$lib/PageStructure.svelte';
-    import { getTimezone } from '$lib';
     import { onMount } from 'svelte';
     
     let timezone:string,
