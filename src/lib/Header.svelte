@@ -56,9 +56,9 @@
 <header class="">
     <div class="container mx-auto flex justify-between text-sm md:font-bold">
         <!-- Logo -->
-        <a href="/" class="uppercase tracking-[4px] font-normal px-5 py-3 bg-lsc dark:text-dbg">Bigtime</a>
+        <a href="/" class="uppercase tracking-[4px] font-normal px-5 py-3 bg-lsc dark:text-dbg flex justify-center items-center">Bigtime</a>
         
-        <div class="flex gap-2">
+        <div class="flex gap-4 items-center py-2">
             <!-- Search -->
             {#if $page.url.pathname.includes('/clock')}
             <div class="flex items-center">
@@ -88,6 +88,10 @@
             {#if notificationPermission !== "granted"}
                 <button class="text-2xl" on:click={askNotificationPermission} title="Allow Push Notifications">{@html icons.bell}</button>
             {/if}
+
+            <a href='https://ko-fi.com/friesnwaffle' target='_blank'>
+                <img src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' alt='Buy Me a Coffee at ko-fi.com' class="h-10" />
+            </a>
             
         </div>
     </div>

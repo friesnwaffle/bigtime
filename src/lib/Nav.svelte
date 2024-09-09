@@ -13,7 +13,7 @@
             class="flex-grow flex flex-col-reverse items-center py-2 {$page.url.pathname.includes(
                 '/clock',
             )
-                ? 'bg-lsc dark:bg-dsc rounded-md shadow-md'
+                ? 'bg-lsc dark:bg-dsc text-lpm rounded-md shadow-md'
                 : ''}"
         >
             <span class="text-sm">Clock</span>
@@ -24,7 +24,7 @@
             href="/timer"
             class="flex-grow flex flex-col-reverse items-center py-2 {$page.url
                 .pathname === '/timer'
-                ? 'bg-lsc dark:bg-dsc rounded-md shadow-md'
+                ? 'bg-lsc dark:bg-dsc text-lpm rounded-md shadow-md'
                 : ''}"
         >
             <span class="text-sm">Timer</span>
@@ -35,7 +35,7 @@
             href="/stopwatch"
             class="flex-grow flex flex-col-reverse items-center py-2 {$page.url
                 .pathname === '/stopwatch'
-                ? 'bg-lsc dark:bg-dsc rounded-md shadow-md'
+                ? 'bg-lsc dark:bg-dsc text-lpm rounded-md shadow-md'
                 : ''}"
         >
             <span class="text-sm">Stopwatch</span>
@@ -46,7 +46,7 @@
             href="/pomodoro"
             class="flex-grow flex flex-col-reverse items-center py-2 {$page.url
                 .pathname === '/pomodoro'
-                ? 'bg-lsc dark:bg-dsc rounded-md shadow-md'
+                ? 'bg-lsc dark:bg-dsc text-lpm rounded-md shadow-md'
                 : ''}"
         >
             <span class="text-sm">Pomodoro</span>

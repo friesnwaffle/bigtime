@@ -33,3 +33,5 @@ Big simple clock
 - [ ] slots for timezones
 - [x] landing page
 - [ ] sitemap.xml
+- [ ] clock reset
+- [ ] add donation
